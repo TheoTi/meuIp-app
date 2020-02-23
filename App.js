@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Animated, Dimensions, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Animated, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 import Constants from 'expo-constants'
 
