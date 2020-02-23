@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import { Image, MaskedViewIOS, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Animated, Dimensions, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 import Constants from 'expo-constants'
 
 import logo from './assets/logo.png'
 
 export default function App() {
-  useEffect(() => {
-    
-  },[])
-
+  const [offset] = useState(new Animated.ValueXY({ x: 0, y: -200 }))
   const [ip, setIp] = useState('')
+
+  useEffect(() => {
+    Animated.spring(offset.y, {
+      toValue: 0,
+      bounciness: 20,
+      speed: 0.5
+    }).start()
+  }, [])
 
   const handleSearch = async () => {
     setIp(
@@ -28,7 +33,11 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.body}>
-        <Image source={logo} />
+        <Animated.Image source={logo} style={{
+          transform: [
+            { translateY: offset.y }
+          ]
+        }}/>
         <Text style={styles.ip}>{ip}</Text>
         <TouchableOpacity
           style={styles.btnDescobrir}
